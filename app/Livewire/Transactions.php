@@ -60,6 +60,6 @@ class Transactions extends Component
 
         return view('livewire.transactions', [
             'transactions' => $transactions,
-        ]);
+        ])->layout('layouts.app');;
     }
 }

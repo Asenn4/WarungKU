@@ -114,6 +114,6 @@ class Products extends Component
 
         return view('livewire.products', [
             'products' => $products,
-        ]);
+        ])->layout('layouts.app');;
     }
 }

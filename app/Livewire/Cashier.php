@@ -155,6 +155,6 @@ class Cashier extends Component
 
         return view('livewire.cashier', [
             'products' => $products,
-        ]);
+        ])->layout('layouts.app');;
     }
 }

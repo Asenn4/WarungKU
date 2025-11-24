@@ -48,6 +48,6 @@ class Dashboard extends Component
             'chartLabels' => $chartLabels,
             'chartData' => $chartData,
             'lowStockProducts' => $lowStockProducts,
-        ]);
+        ])->layout('layouts.app');
     }
 }
