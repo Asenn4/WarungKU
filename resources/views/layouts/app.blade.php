@@ -9,6 +9,7 @@
     @livewireStyles
 </head>
 <body class="bg-gray-50">
+
     <!-- Online Indicator -->
     <div id="connection-status" class="fixed top-4 right-4 z-50 hidden">
         <div class="flex items-center gap-2 px-4 py-2 rounded-lg shadow-lg">
@@ -21,10 +22,11 @@
     <nav class="bg-white shadow-lg border-b">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex">
+                <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
                         <h1 class="text-2xl font-bold text-indigo-600">🏪 POS Warung</h1>
                     </div>
+                    <!-- Desktop Menu -->
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <a href="{{ route('dashboard') }}" class="@if(request()->routeIs('dashboard')) border-indigo-500 text-gray-900 @else border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 @endif inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
                             Dashboard
@@ -40,19 +42,44 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- User Info & Mobile Menu Button -->
                 <div class="flex items-center">
-                    <span class="text-sm text-gray-700 mr-4">{{ Auth::user()->name }}</span>
-                    <form method="POST" action="{{ route('logout') }}">
+                    <span class="text-sm text-gray-700 mr-4 hidden sm:inline">{{ Auth::user()->name }}</span>
+                    <form method="POST" action="{{ route('logout') }}" class="hidden sm:inline">
                         @csrf
                         <button type="submit" class="text-sm text-gray-500 hover:text-gray-700">Logout</button>
                     </form>
+
+                    <!-- Mobile Hamburger -->
+                    <div class="sm:hidden flex items-center">
+                        <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
+                            <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <path class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M4 6h16M4 12h16M4 18h16"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="sm:hidden hidden px-2 pt-2 pb-3 space-y-1">
+            <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Dashboard</a>
+            <a href="{{ route('cashier') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Kasir</a>
+            <a href="{{ route('products') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Produk</a>
+            <a href="{{ route('transactions') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Riwayat</a>
+            <span class="block px-3 py-2 rounded-md text-base font-medium text-gray-700">{{ Auth::user()->name }}</span>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Logout</button>
+            </form>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="py-6">
+    <main class="py-6 px-4 sm:px-6 lg:px-8">
         {{ $slot }}
     </main>
 
@@ -88,8 +115,7 @@
                 text.classList.remove('text-red-700');
                 text.classList.add('text-green-700');
                 
-                // Hide after 3 seconds
-                setTimeout(() => statusDiv.classList.add('hidden'), 3000);
+                setTimeout(() => statusDiv.classList.add('hidden'), 1000);
             } else {
                 container.classList.remove('bg-green-100');
                 container.classList.add('bg-red-100');
@@ -103,9 +129,14 @@
 
         window.addEventListener('online', updateConnectionStatus);
         window.addEventListener('offline', updateConnectionStatus);
-        
-        // Check initial status
         setTimeout(updateConnectionStatus, 500);
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
     </script>
 </body>
 </html>
