@@ -5,6 +5,39 @@
             <p class="mt-1 text-sm text-gray-600">Transaksi penjualan cepat</p>
         </div>
 
+        <div class="mb-4 flex gap-3">
+            <button 
+                type="button"
+                onclick="toggleBarcodeScanner()"
+                class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all flex items-center gap-2"
+            >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"/>
+                </svg>
+                <span id="scanner-btn-text">📷 Scan Barcode</span>
+            </button>
+        </div>
+
+        <!-- Barcode Scanner Container (Hidden by default) -->
+        <div id="barcode-scanner-container" class="mb-6 hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Scanner Barcode</h3>
+                    <button 
+                        type="button"
+                        onclick="stopBarcodeScanner()"
+                        class="text-red-600 hover:text-red-800 font-medium"
+                    >
+                        ✕ Tutup
+                    </button>
+                </div>
+                <div id="barcode-reader" class="w-full"></div>
+                <div class="mt-4 text-sm text-gray-600 text-center">
+                    Arahkan kamera ke barcode produk
+                </div>
+            </div>
+        </div>
+
         @if (session()->has('message'))
             <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
                 {{ session('message') }}
@@ -172,7 +205,6 @@
                 </div>
             </div>
         @endif
-    </div>
 
     <!-- TETAPKAN <style> DI DALAM ROOT ELEMENT -->
     <style>
@@ -191,4 +223,81 @@
             }
         }
     </style>
+
+    <!-- HTML5 QRCode Library -->
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+<script>
+    let html5Qr;
+    let scannerRunning = false;
+
+    function toggleBarcodeScanner() {
+        const container = document.getElementById("barcode-scanner-container");
+        const text = document.getElementById("scanner-btn-text");
+
+        if (!scannerRunning) {
+            startBarcodeScanner();
+            container.classList.remove("hidden");
+            text.textContent = "⏹ Stop Scan";
+        } else {
+            stopBarcodeScanner();
+            container.classList.add("hidden");
+            text.textContent = "📷 Scan Barcode";
+        }
+    }
+
+    function startBarcodeScanner() {
+        if (scannerRunning) return;
+
+        html5Qr = new Html5Qrcode("barcode-reader");
+
+        html5Qr.start(
+            { facingMode: "environment" },
+            {
+                fps: 10,
+                qrbox: 250
+            },
+            (decodedText) => {
+                beepSound();
+                stopBarcodeScanner();
+                scanBarcode(decodedText);
+            },
+            (errorMessage) => {}
+        ).then(() => {
+            scannerRunning = true;
+        }).catch(err => {
+            console.error(err);
+        });
+    }
+
+    function stopBarcodeScanner() {
+        if (!scannerRunning) return;
+
+        html5Qr.stop().then(() => {
+            html5Qr.clear();
+            scannerRunning = false;
+        });
+    }
+
+    function scanBarcode(sku) {
+        fetch(`/api/product/sku/${sku}`)
+            .then(res => res.json())
+            .then(json => {
+                if (json.success) {
+                    // Panggil Livewire addToCart
+                    Livewire.dispatch('addFromScan', { productId: json.data.id });
+                } else {
+                    alert("Produk tidak ditemukan! Tambahkan produk baru.");
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
+    function beepSound() {
+        const audio = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
+        audio.play();
+    }
+</script>
+
+
 </div>

@@ -58,5 +58,21 @@ class DatabaseSeeder extends Seeder
             'stock' => 60,
             'low_stock_threshold' => 15,
         ]);
+
+        Product::create([
+            'name' => 'Indomie Goreng',
+            'sku' => '8998866200301', // Contoh barcode asli Indomie
+            'price' => 3500,
+            'stock' => 50,
+            'low_stock_threshold' => 10,
+        ]);
+
+        Product::create([
+            'name' => 'Aqua 600ml',
+            'sku' => '8886008101350', // Contoh barcode asli Aqua
+            'price' => 4000,
+            'stock' => 30,
+            'low_stock_threshold' => 10,
+        ]);
     }
 }

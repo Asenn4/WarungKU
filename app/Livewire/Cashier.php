@@ -25,6 +25,34 @@ class Cashier extends Component
         $this->calculateTotal();
     }
 
+    public function scanBarcode()
+    {
+        $barcode = trim($this->search);
+    
+        if (empty($barcode)) {
+            return;
+        }
+
+        $product = Product::where('sku', $barcode)->first();
+
+        if ($product) {
+            $this->addToCart($product->id); 
+        
+            $this->search = '';
+            $this->dispatch('focusScanner');
+
+        } else {
+            session()->flash('error', "Barcode/SKU '$barcode' tidak ditemukan!");
+            $this->search = '';
+            $this->dispatch('focusScanner');
+        }
+    }
+        public function processCameraScan($barcodeValue)
+    {
+        $this->search = trim($barcodeValue); 
+        $this->scanBarcode(); 
+    }
+
     public function addToCart($productId)
     {
         $product = Product::find($productId);
@@ -130,6 +158,7 @@ class Cashier extends Component
             $this->calculateTotal();
 
             session()->flash('message', 'Transaksi berhasil!');
+            $this->dispatch('focusScanner');
         } catch (\Exception $e) {
             DB::rollBack();
             session()->flash('error', 'Transaksi gagal: ' . $e->getMessage());

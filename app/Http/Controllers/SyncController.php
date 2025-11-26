@@ -63,4 +63,52 @@ class SyncController extends Controller
             ], 500);
         }
     }
+
+    public function searchProductBySKU($sku)
+    {
+        try {
+            // Search product by SKU
+            $product = Product::where('sku', $sku)
+                ->orWhere('sku', 'LIKE', '%' . $sku . '%')
+                ->first();
+
+            if ($product) {
+                // Check if product has stock
+                if ($product->stock <= 0) {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Produk ditemukan tapi stok habis',
+                        'product' => null
+                    ]);
+                }
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Produk ditemukan',
+                    'product' => [
+                        'id' => $product->id,
+                        'name' => $product->name,
+                        'sku' => $product->sku,
+                        'price' => $product->price,
+                        'stock' => $product->stock
+                    ]
+                ]);
+            }
+
+            // Product not found
+            return response()->json([
+                'success' => false,
+                'message' => 'Produk tidak ditemukan',
+                'product' => null
+            ]);
+
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage(),
+                'product' => null
+            ], 500);
+        }
+    }
+
 }
