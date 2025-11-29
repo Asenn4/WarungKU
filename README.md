@@ -1,59 +1,479 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# WarungKU
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
+  <!-- logo -->
+  <img src="logo.png" alt="public\images\WarungKu_Logo.png" width="200"/>
+  
+  <p align="center">
+    <strong>Sistem Manajemen Warung Modern</strong>
+  </p>
+  
+  <p align="center">
+    Aplikasi point of sale (POS) untuk memudahkan pengelolaan warung/toko dengan fitur-fitur lengkap dan user-friendly
+  </p>
 
-## About Laravel
+  <!-- Badges - sesuaikan dengan project Anda -->
+  <p align="center">
+    <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version">
+    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
+    <img src="https://img.shields.io/badge/status-active-success.svg" alt="Status">
+  </p>
+</div>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Daftar Isi
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   [Tentang Project](#-tentang-project)
+-   [Fitur Utama](#-fitur-utama)
+-   [Screenshot](#-screenshot)
+-   [Teknologi yang Digunakan](#-teknologi-yang-digunakan)
+-   [Prasyarat](#-prasyarat)
+-   [Instalasi](#-instalasi)
+-   [Penggunaan](#-penggunaan)
+-   [Konfigurasi](#-konfigurasi)
+-   [Struktur Database](#-struktur-database)
+-   [API Documentation](#-api-documentation)
+-   [Roadmap](#-roadmap)
+-   [Kontribusi](#-kontribusi)
+-   [License](#-license)
+-   [Kontak](#-kontak)
+-   [Acknowledgments](#-acknowledgments)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🎯 Tentang Project
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**WarungKU** adalah aplikasi point of sale (POS) berbasis web yang dirancang khusus untuk membantu pemilik warung atau toko kecil dalam mengelola bisnis mereka dengan lebih efisien. Aplikasi ini menyediakan antarmuka yang sederhana namun powerful untuk melakukan transaksi penjualan, manajemen stok, dan pelaporan keuangan.
 
-## Laravel Sponsors
+### Latar Belakang
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Banyak warung tradisional masih menggunakan metode pencatatan manual yang rentan terhadap kesalahan dan sulit untuk dianalisis. WarungKU hadir sebagai solusi digitalisasi yang terjangkau dan mudah digunakan, bahkan untuk pengguna yang tidak familiar dengan teknologi.
 
-### Premium Partners
+### Tujuan Project
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+-   Memudahkan proses transaksi penjualan
+-   Mengelola inventori/stok barang secara real-time
+-   Menyediakan laporan penjualan dan keuangan yang akurat
+-   Meningkatkan efisiensi operasional warung/toko kecil
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ✨ Fitur Utama
 
-## Code of Conduct
+-   🛒 **Manajemen Produk**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    -   Tambah, edit, dan hapus produk
+    -   Kategori produk
+    -   Barcode scanning
 
-## Security Vulnerabilities
+-   💰 **Point of Sale (POS)**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    -   Interface kasir yang intuitif
+    -   Perhitungan otomatis
+    -   Cetak struk transaksi
 
-## License
+-   📦 **Manajemen Stok**
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    -   Tracking stok real-time
+    -   Notifikasi stok minimum
+    -   Riwayat pergerakan stok
+    -   Restock management
+
+-   📊 **Laporan & Analitik**
+
+    -   Laporan penjualan
+    -   Grafik penjualan
+    -   Produk terlaris
+    -   Laporan laba/rugi
+
+-   🔐 **Keamanan**
+    -   Autentikasi dan otorisasi
+    -   Enkripsi data sensitif
+    -   Session management
+
+---
+
+## 📸 Screenshot
+
+<div align="center">
+  
+### Dashboard
+![Dashboard](public/images/screenshots/dashboard.png)
+
+### Kasir (Transaksi)
+
+![Transaksi](public/images/screenshots/transaksi.png)
+
+### Manajemen Produk
+
+![Products](public/images/screenshots/produk.png)
+
+### Laporan Penjualan
+
+![Reports](public/images/screenshots/riwayat.png)
+
+</div>
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+### Backend
+
+-   **PHP** 8.x - Bahasa pemrograman utama
+-   **Laravel** 10.x - PHP Framework
+-   **MySQL** 8.x - Database management system
+
+### Frontend
+
+-   **HTML5** - Markup language
+-   **CSS3** / **Bootstrap 5** - Styling framework
+-   **JavaScript** - Programming language
+-   **jQuery** - JavaScript library
+-   **Chart.js** - Data visualization
+
+### Tools & Libraries
+
+-   **Composer** - PHP dependency manager
+-   **NPM** - Node package manager
+-   **Git** - Version control
+-   **Laragon** - Local development environment
+
+---
+
+## 📋 Prasyarat
+
+Sebelum memulai instalasi, pastikan sistem Anda memiliki:
+
+-   PHP >= 8.0
+-   Composer >= 2.0
+-   MySQL >= 8.0 atau MariaDB >= 10.3
+-   Apache/Nginx web server
+-   Node.js >= 16.x dan NPM (opsional, untuk development)
+-   Git (untuk cloning repository)
+
+---
+
+## 🚀 Instalasi
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/Asenn4/WarungKU.git
+cd WarungKU
+```
+
+### 2. Install Dependencies
+
+```bash
+# Install PHP dependencies
+composer install
+
+# Install Node.js dependencies (jika ada)
+npm install
+```
+
+### 3. Konfigurasi Environment
+
+```bash
+# Copy file .env.example menjadi .env
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+```
+
+### 4. Konfigurasi Database
+
+Edit file `.env` dan sesuaikan dengan konfigurasi database Anda:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=warungku_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 5. Buat Database
+
+```bash
+# Buat database baru
+mysql -u root -p
+CREATE DATABASE warungku_db;
+exit;
+```
+
+### 6. Migrasi Database
+
+```bash
+# Jalankan migration
+php artisan migrate
+
+# Jalankan seeder (data dummy untuk testing)
+php artisan db:seed
+```
+
+### 7. Jalankan Aplikasi
+
+```bash
+# Development server
+php artisan serve
+
+# Aplikasi akan berjalan di http://localhost:8000
+```
+
+---
+
+## 💻 Penggunaan
+
+### Login Kredensial Default
+
+Setelah menjalankan seeder, Anda dapat login dengan:
+
+-   Email: admin@warung.com
+-   Password: password
+
+> ⚠️ **Penting:** Segera ubah password default setelah login pertama kali!
+
+### Workflow Dasar
+
+1. **Login** ke sistem dengan kredensial yang sesuai
+2. **Tambahkan Produk** melalui menu Manajemen Produk
+3. **Lakukan Transaksi** melalui menu POS
+4. **Lihat Laporan** di menu Dashboard atau Laporan
+
+---
+
+## ⚙️ Konfigurasi
+
+### Konfigurasi Aplikasi
+
+File konfigurasi utama terdapat di `config/app.php`. Anda dapat mengatur:
+
+-   Timezone aplikasi
+-   Locale (bahasa)
+-   URL aplikasi
+-   Dan lainnya
+
+### Konfigurasi POS
+
+Edit file `config/pos.php` untuk mengatur:
+
+```php
+return [
+    'tax_rate' => 10, // Pajak dalam persen
+    'currency' => 'Rp', // Simbol mata uang
+    'receipt_header' => 'WarungKU', // Header struk
+    'receipt_footer' => 'Terima kasih atas kunjungan Anda', // Footer struk
+];
+```
+
+### Konfigurasi Email (Opsional)
+
+Jika ingin mengaktifkan notifikasi email, edit `.env`:
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your_email@gmail.com
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=your_email@gmail.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+---
+
+## 🗄️ Struktur Database
+
+### Tabel Utama
+
+```
+users
+├── id
+├── name
+├── email
+├── password
+├── role (admin/kasir)
+└── timestamps
+
+products
+├── id
+├── name
+├── description
+├── category_id
+├── price
+├── stock
+├── image
+└── timestamps
+
+categories
+├── id
+├── name
+└── timestamps
+
+transactions
+├── id
+├── user_id
+├── total_amount
+├── payment_method
+├── status
+└── timestamps
+
+transaction_details
+├── id
+├── transaction_id
+├── product_id
+├── quantity
+├── price
+└── subtotal
+```
+
+### Entity Relationship Diagram (ERD)
+
+```
+users 1──────* transactions
+             │
+             │
+             └──────* transaction_details
+                             │
+                             │
+                             └──────* products ──────* categories
+```
+
+---
+
+## 📖 API Documentation
+
+### Base URL
+
+```
+http://localhost:8000/api
+```
+
+### Authentication
+
+Semua endpoint API memerlukan Bearer token kecuali endpoint login.
+
+### Endpoints
+
+#### Authentication
+
+```http
+POST /api/login
+POST /api/logout
+```
+
+#### Products
+
+```http
+GET    /api/products          # Get all products
+GET    /api/products/{id}     # Get product by ID
+POST   /api/products          # Create new product
+PUT    /api/products/{id}     # Update product
+DELETE /api/products/{id}     # Delete product
+```
+
+#### Transactions
+
+```http
+GET    /api/transactions      # Get all transactions
+POST   /api/transactions      # Create new transaction
+GET    /api/transactions/{id} # Get transaction by ID
+```
+
+### Example Request
+
+```javascript
+// Login
+fetch("http://localhost:8000/api/login", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        email: "admin@warungku.com",
+        password: "admin123",
+    }),
+});
+```
+
+---
+
+## 🗺️ Roadmap
+
+-   [x] Basic POS functionality
+-   [x] Product management
+-   [x] Transaction management
+-   [x] Basic reporting
+-   [ ] Mobile responsive design
+-   [ ] Multi-store support
+-   [ ] Integration dengan e-commerce
+-   [ ] Customer loyalty program
+-   [ ] Inventory forecasting dengan AI
+-   [ ] Mobile app (Android & iOS)
+
+---
+
+## 🤝 Kontribusi
+
+Kontribusi sangat diterima! Berikut cara untuk berkontribusi:
+
+1. Fork repository ini
+2. Buat branch baru (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan Anda (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+### Guidelines Kontribusi
+
+-   Pastikan code Anda mengikuti coding standards (PSR-12 untuk PHP)
+-   Tulis unit test untuk fitur baru
+-   Update dokumentasi jika diperlukan
+-   Jelaskan perubahan Anda dengan detail di Pull Request
+
+---
+
+## 📞 Kontak
+
+**Developer:**
+
+[Riziq Izza Lathif Hilman]
+
+-   Email: 111202416012@mhs.dinus.ac.id
+
+[Mohammad Wisam Wiraghina]
+
+-   Email: 111202415739@mhs.dinus.ac.id
+
+[Muhammad Abid]
+
+-   Email: 111202415597@mhs.dinus.ac.id
+
+[Aulia Rahman Afryansyah]
+
+-   Email: 111202415810@mhs.dinus.ac.id
+
+**Project Link:** [https://github.com/Asenn4/WarungKU](https://github.com/Asenn4/WarungKU)
+
+---
+
+## 🙏 Acknowledgments
+
+-   [Laravel Documentation](https://laravel.com/docs)
+-   [Bootstrap](https://getbootstrap.com/)
+-   [Chart.js](https://www.chartjs.org/)
+-   [Font Awesome](https://fontawesome.com/)
+-   Inspirasi dari berbagai project open source POS system
+-   Komunitas developer Indonesia
+
+---
+
+<div align="center">
+  <p>Dibuat dengan ❤️ oleh <a href="https://github.com/Asenn4">Asenn4</a></p>
+  <p>⭐ Star project ini jika bermanfaat!</p>
+</div>

@@ -17,7 +17,11 @@ class Cashier extends Component
     public $showReceipt = false;
     public $lastTransaction = null;
 
-    protected $listeners = ['product-selected' => 'addToCart'];
+    protected $listeners = [
+        'product-selected' => 'addToCart',
+        'addFromScan' => 'addToCart',
+    ];
+
 
     public function mount()
     {
@@ -53,35 +57,35 @@ class Cashier extends Component
         $this->scanBarcode(); 
     }
 
-    public function addToCart($productId)
-    {
-        $product = Product::find($productId);
-        
-        if (!$product || $product->stock <= 0) {
-            session()->flash('error', 'Produk tidak tersedia atau stok habis!');
+    public function addToCart($data)
+{
+    $productId = is_array($data) ? ($data['productId'] ?? null) : $data;
+
+    if (!$productId) return;
+
+    $product = Product::find($productId);
+    if (!$product) return;
+
+    if (isset($this->cart[$productId])) {
+        if ($this->cart[$productId]['qty'] < $product->stock) {
+            $this->cart[$productId]['qty']++;
+        } else {
+            session()->flash('error', 'Stok tidak cukup!');
             return;
         }
-
-        if (isset($this->cart[$productId])) {
-            if ($this->cart[$productId]['qty'] < $product->stock) {
-                $this->cart[$productId]['qty']++;
-            } else {
-                session()->flash('error', 'Stok tidak cukup!');
-                return;
-            }
-        } else {
-            $this->cart[$productId] = [
-                'id' => $product->id,
-                'name' => $product->name,
-                'price' => $product->price,
-                'qty' => 1,
-                'stock' => $product->stock,
-            ];
-        }
-
-        $this->calculateTotal();
-        $this->search = '';
+    } else {
+        $this->cart[$productId] = [
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'qty' => 1,
+            'stock' => $product->stock,
+        ];
     }
+
+    $this->calculateTotal();    
+    }
+
 
     public function updateQty($productId, $qty)
     {

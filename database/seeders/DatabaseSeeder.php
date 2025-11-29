@@ -20,59 +20,43 @@ class DatabaseSeeder extends Seeder
 
         // Seed products
         Product::create([
-            'name' => 'Indomie Goreng',
-            'sku' => 'IDM-001',
+            'name' => 'Indomie Goreng', // Contoh barcode asli Indomie
+            'sku' => '5285000390602',
             'price' => 3500,
             'stock' => 50,
             'low_stock_threshold' => 10,
         ]);
 
         Product::create([
-            'name' => 'Aqua 600ml',
-            'sku' => 'AQU-001',
+            'name' => 'Aqua 600ml', // Contoh barcode asli Aqua
+            'sku' => '8886008101350',
             'price' => 4000,
             'stock' => 30,
             'low_stock_threshold' => 10,
         ]);
 
         Product::create([
-            'name' => 'Kopi Kapal Api',
-            'sku' => 'KKA-001',
-            'price' => 2000,
+            'name' => 'Nescafe 230g',
+            'sku' => '4600680009421',
+            'price' => 10000,
             'stock' => 100,
             'low_stock_threshold' => 20,
         ]);
 
         Product::create([
-            'name' => 'Teh Pucuk Harum',
-            'sku' => 'TPH-001',
+            'name' => 'MSG jinomoto 100g',
+            'sku' => '8880017530101',
             'price' => 5000,
             'stock' => 8,
             'low_stock_threshold' => 10,
         ]);
 
         Product::create([
-            'name' => 'Beng Beng',
-            'sku' => 'BB-001',
-            'price' => 2500,
-            'stock' => 60,
-            'low_stock_threshold' => 15,
-        ]);
-
-        Product::create([
-            'name' => 'Indomie Goreng',
-            'sku' => '8998866200301', // Contoh barcode asli Indomie
-            'price' => 3500,
-            'stock' => 50,
-            'low_stock_threshold' => 10,
-        ]);
-
-        Product::create([
-            'name' => 'Aqua 600ml',
-            'sku' => '8886008101350', // Contoh barcode asli Aqua
-            'price' => 4000,
-            'stock' => 30,
-            'low_stock_threshold' => 10,
+            'name' => 'Kopiko',
+            'sku' => '8850580200398',
+            'price' => 500,
+            'stock' => 1000,
+            'low_stock_threshold' => 50,
         ]);
     }
 }

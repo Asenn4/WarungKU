@@ -24,7 +24,8 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <h1 class="text-2xl font-bold text-indigo-600">🏪 POS Warung</h1>
+                        <img src="{{ asset('images\WarungKu_Logo.png') }}" alt="Logo" width="40" height="40">
+                        <h1 class="text-2xl font-bold text-indigo-600">WarungKu</h1>
                     </div>
                     <!-- Desktop Menu -->
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">

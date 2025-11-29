@@ -5,6 +5,20 @@ use App\Livewire\Products;
 use App\Livewire\Cashier;
 use App\Livewire\Transactions;
 use Illuminate\Support\Facades\Route;
+// routes/web.php
+use App\Models\Product;
+use Milon\Barcode\DNS1D;
+
+Route::get('/product/{sku}/barcode', function ($sku) {
+    $product = Product::where('sku', $sku)->firstOrFail();
+    // Menggunakan DNS1D untuk generate barcode
+    $barcode = new DNS1D();
+    // Mengatur format barcode ke EAN13 yang umum digunakan produk ritel
+    // Pastikan SKU Anda adalah numerik dan valid untuk format ini
+    return response($barcode->getBarcodePNG($product->sku, 'EAN13', 2, 60, [0, 0, 0], true))
+        ->header('Content-Type', 'image/png');
+})->name('product.barcode');
+
 
 Route::get('/', function () {
     return redirect('/login');
