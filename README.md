@@ -2,7 +2,7 @@
 
 <div align="center">
   <!-- logo -->
-  <img src="public\images\WarungKu_Logo.png" alt="Logo WarungKu" width="200"/>
+  <img src="public\images\WarungKu.png" alt="Logo WarungKu" width="200"/>
   
   <p align="center">
     <strong>Sistem Manajemen Warung Modern</strong>
