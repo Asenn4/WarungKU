@@ -19,13 +19,19 @@ class Products extends Component
     public $low_stock_threshold = 5;
     public $showModal = false;
 
-    protected $rules = [
+    protected function rules()
+{
+    return [
         'name' => 'required|min:3',
-        'sku' => 'nullable|unique:products,sku',
+        'sku' => $this->productId
+            ? 'nullable|unique:products,sku,' . $this->productId   // saat update
+            : 'nullable|unique:products,sku',                      // saat create
         'price' => 'required|numeric|min:0',
         'stock' => 'required|integer|min:0',
         'low_stock_threshold' => 'required|integer|min:0',
     ];
+}
+
 
     public function updatingSearch()
     {
@@ -61,9 +67,7 @@ class Products extends Component
 
         if ($this->productId) {
             $product = Product::findOrFail($this->productId);
-            $this->validate([
-                'sku' => 'nullable|unique:products,sku,' . $this->productId,
-            ]);
+            
             $product->update([
                 'name' => $this->name,
                 'sku' => $this->sku,
