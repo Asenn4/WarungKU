@@ -2,7 +2,7 @@
 
 <div align="center">
   <!-- logo -->
-  <img src="logo.png" alt="public\images\WarungKu_Logo.png" width="200"/>
+  <img src="public\images\WarungKu_Logo.png" alt="Logo WarungKu" width="200"/>
   
   <p align="center">
     <strong>Sistem Manajemen Warung Modern</strong>
@@ -15,7 +15,6 @@
   <!-- Badges - sesuaikan dengan project Anda -->
   <p align="center">
     <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version">
-    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
     <img src="https://img.shields.io/badge/status-active-success.svg" alt="Status">
   </p>
 </div>
