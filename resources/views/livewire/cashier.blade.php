@@ -243,22 +243,31 @@
     }
 
     function startBarcodeScanner() {
-        if (scannerRunning) return;
+    if (scannerRunning) return;
 
-        html5Qr = new Html5Qrcode("barcode-reader");
+    html5Qr = new Html5Qrcode("barcode-reader");
 
-        html5Qr.start(
-            { facingMode: "environment" },
-            { fps: 10, qrbox: 250 },
-            (decodedText) => {
-                beepSound();
-                stopBarcodeScanner();
-                scanBarcode(decodedText);
+    html5Qr.start(
+        { facingMode: "environment" },
+        { 
+            fps: 10, 
+            qrbox: 300,  // Perbesar area scan
+            aspectRatio: 1.777778,  // Ratio 16:9
+            disableFlip: false,
+            // Tambahan untuk optimasi
+            experimentalFeatures: {
+                useBarCodeDetectorIfSupported: true
             }
-        ).then(() => {
-            scannerRunning = true;
-        }).catch(console.error);
-    }
+        },
+        (decodedText) => {
+            beepSound();
+            stopBarcodeScanner();
+            scanBarcode(decodedText);
+        }
+    ).then(() => {
+        scannerRunning = true;
+    }).catch(console.error);
+}
 
     function stopBarcodeScanner() {
         if (!scannerRunning) return;
@@ -270,24 +279,40 @@
     }
 
     function scanBarcode(rawSku) {
-
     let sku = rawSku.trim().replace(/\s+/g, "").replace(/\r?\n|\r/g, "");
 
-    console.log("RAW:", rawSku);
-    console.log("CLEAN:", sku);
+    console.log("🔍 RAW SKU:", rawSku);
+    console.log("🧹 CLEAN SKU:", sku);
+    console.log("📏 LENGTH:", sku.length);
+
+    // Validasi SKU (EAN-13 harus 13 digit)
+    if (!/^\d{13}$/.test(sku)) {
+        console.warn("⚠️ SKU tidak valid (harus 13 digit)");
+        alert("Barcode tidak valid! Harus 13 digit numerik.");
+        return;
+    }
 
     fetch(`/api/search-product-by-sku/${sku}`)
-        .then(res => res.json())
+        .then(res => {
+            console.log("📡 Response Status:", res.status);
+            return res.json();
+        })
         .then(json => {
-            console.log("API RESPONSE:", json);
+            console.log("📦 API RESPONSE:", json);
 
-            if (json.success && json.data && json.data.id) {
-                $wire.dispatch('addFromScan', { productId: json.data.id });
+            if (json.success && json.product && json.product.id) {
+                console.log("✅ Produk ditemukan:", json.product.name);
+                @this.call('addToCart', json.product.id);
             } else {
-                alert("Produk tidak ditemukan (SKU mismatch)!");
+                console.error("❌ Produk tidak ditemukan");
+                alert(`Produk dengan SKU ${sku} tidak ditemukan!\n\nCek database Anda.`);
             }
+        })
+        .catch(error => {
+            console.error("💥 Error:", error);
+            alert("Terjadi kesalahan saat mencari produk");
         });
-    }
+}
 
 
     function beepSound() {
