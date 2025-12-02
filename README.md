@@ -120,9 +120,9 @@ Banyak warung tradisional masih menggunakan metode pencatatan manual yang rentan
 
 ### Backend
 
--   **PHP** 8.x - Bahasa pemrograman utama
--   **Laravel** 10.x - PHP Framework
--   **MySQL** 8.x - Database management system
+-   **PHP**  - Bahasa pemrograman utama
+-   **Laravel**  - PHP Framework
+-   **MySQL**  - Database management system
 
 ### Frontend
 
