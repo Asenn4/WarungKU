@@ -468,7 +468,7 @@ Kontribusi sangat diterima! Berikut cara untuk berkontribusi:
 -   [Chart.js](https://www.chartjs.org/)
 -   [Font Awesome](https://fontawesome.com/)
 -   Inspirasi dari berbagai project open source POS system
--   Komunitas developer Indonesia
+-   Komunitas Developer Indonesia
 
 ---
 
